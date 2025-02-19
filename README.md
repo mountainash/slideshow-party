@@ -19,4 +19,4 @@ The decorations are party related emojis that just float around to add a little 
 
 ## Credits
 
-Various [Unspash](https://unsplash.com/photos/a-group-of-people-standing-around-in-a-room-9vDdkxSCAD4) photographers for the photos used in the `photos` folder.
+Various [Unsplash](https://unsplash.com/photos/a-group-of-people-standing-around-in-a-room-9vDdkxSCAD4) photographers for the photos used in the `photos` folder.
