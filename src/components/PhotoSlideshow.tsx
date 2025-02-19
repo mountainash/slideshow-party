@@ -1,31 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import type { Photo, AnimationType } from '../types';
-import '../styles/animations.css';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Autoplay } from 'swiper/modules';
 
-const ANIMATIONS: AnimationType[] = ['blur', 'hue', 'saturate', 'brightness', 'omgwtfbbq'];
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 
-export const PhotoSlideshow: React.FC<{ photos: Photo[] }> = ({ photos }) => {
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-  const [currentAnimation, setCurrentAnimation] = useState<AnimationType>('blur');
+const cssEffects = ['blur', 'hue', 'saturate', 'brightness', 'omgwtfbbq'];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentPhotoIndex((prev) => (prev + 1) % photos.length);
-      setCurrentAnimation(ANIMATIONS[Math.floor(Math.random() * ANIMATIONS.length)]);
-    }, 3000);
+export const PhotoSlideshow: React.FC<{ photos: string[] }> = ({ photos }) => {
 
-    return () => clearInterval(timer);
-  }, [photos.length]);
+  const [currentEffect, setCurrentEffect] = useState('');
 
-  const currentPhoto = photos[currentPhotoIndex];
+  const getRandomEffect = () => {
+    const randomIndex = Math.floor(Math.random() * cssEffects.length);
+    return cssEffects[randomIndex];
+  };
 
   return (
-    <div className="w-full h-full">
-      <img
-        src={currentPhoto.url}
-        alt={currentPhoto.title}
-        className={`w-full h-full object-cover ${currentAnimation}`}
-      />
-    </div>
+    <Swiper
+      modules={[EffectFade, Autoplay]}
+      effect="fade"
+      fadeEffect={{ crossFade: true }}
+      slidesPerView={1}
+      loop={true}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
+      onSlideChange={() => {
+        setCurrentEffect(getRandomEffect());
+      }}
+      className="w-full h-full"
+    >
+      {photos.map((photo, index) => (
+        <SwiperSlide key={index}>
+          <img
+            src={photo}
+            alt="Slidehowphoto"
+            className={`w-full h-full object-cover transition-transform duration-300 ${currentEffect}`}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };

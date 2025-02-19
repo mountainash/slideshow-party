@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:photos": "bun run scripts/generatePhotoList.ts > photos/index.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },

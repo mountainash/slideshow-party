@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import type { FloatingObject } from '../types';
+import { useEffect, useRef, useState } from 'react';
 
 // Function to generate random position within viewport
 const getRandomPosition = () => ({
   x: Math.random() * window.innerWidth,
   y: Math.random() * window.innerHeight
 });
+
+const emojis = ['🎉', '🪩', '🕺', '🎈', '🎊', '🎶', '🎵', '🎤', '🎧', '🎼', '🎸', '🎷', '🥁', '🎺', '🎻', '🪕', '🪗', '🎫', '🎪', '🎭', '🎨', '🎬', '🎤', '🎥', '🎦', '🎟', '🎮', '🎯', '🎳', '🎰', '🎱', '🎲', '🎴', '🃏', '🀄', '🎨', '🖼', '🎭', '🎪', '🎤', '🎧', '🎼', '🎹', '🥁', '🎷', '🎺', '🎸', '🎻', '🪕', '🪗', '🎫', '🎟', '🎬', '🎥', '🎦', '🎧', '🎤', '🎼'];
 
 // Function to generate random speed
 const getRandomSpeed = (minSpeed = 0.5, maxSpeed = 2) => {
@@ -16,22 +17,34 @@ const getRandomSpeed = (minSpeed = 0.5, maxSpeed = 2) => {
   };
 };
 
-// Function to create a floating object
-const createFloatingObject = (id: string): FloatingObject => ({
-  id,
-  url: 'https://i.imgur.com/i5HmRD2.png', // Replace with actual transparent PNG URL
-  position: getRandomPosition(),
-  speed: getRandomSpeed()
-});
+// Function to get random emojis
+const getRandomEmojis = (count: number) => {
+  const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
 
-// Create initial objects
-const INITIAL_OBJECTS = Array.from({ length: 5 }, (_, index) => 
-  createFloatingObject(String(index + 1))
-);
+// Function to create floating objects with emojis
+const createFloatingObjects = () => {
+  return getRandomEmojis(4).map((emoji, index) => ({
+    id: `${index}-${emoji}`,
+    emoji,
+    position: getRandomPosition(),
+    speed: getRandomSpeed()
+  }));
+};
 
 export function FloatingObjects() {
-  const [objects, setObjects] = useState<FloatingObject[]>(INITIAL_OBJECTS);
+  const [objects, setObjects] = useState(createFloatingObjects());
   const animationFrameRef = useRef<number>();
+
+  // Update emojis every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setObjects(createFloatingObjects());
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const updatePositions = () => {
@@ -72,17 +85,17 @@ export function FloatingObjects() {
 
   return (
     <div className="fixed inset-0 pointer-events-none">
-      {objects.map(obj => (
-        <img
+      {objects.map((obj) => (
+        <div
           key={obj.id}
-          src={obj.url}
-          alt=""
-          className="absolute w-16 h-16 object-contain"
+          className="absolute text-6xl hue"
           style={{
-            transform: `translate(${obj.position.x}px, ${obj.position.y}px)`,
+            transform: `scale(1.25) translate(${obj.position.x}px, ${obj.position.y}px)`,
             transition: 'transform 0.05s linear',
           }}
-        />
+        >
+          {obj.emoji}
+        </div>
       ))}
     </div>
   );

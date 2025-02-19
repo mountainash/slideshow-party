@@ -26,3 +26,80 @@ body {
   height: 110%;
   margin: -5% 0 0 -5%;
 }
+
+.blur {
+  animation: blur 5s infinite;
+}
+
+@keyframes blur {
+
+  25%, 75% {
+    filter: blur(0);
+  }
+
+  0%,
+  100% {
+    filter: blur(10px);
+  }
+}
+
+.hue {
+  animation: hue 5s infinite;
+}
+
+@keyframes hue {
+
+  25%, 75% {
+    filter: hue-rotate(0deg);
+  }
+
+  0%,
+  100% {
+    filter: hue-rotate(180deg);
+  }
+}
+
+.saturate {
+  animation: saturate 5s infinite;
+}
+
+@keyframes saturate {
+  25%, 75% {
+    filter: saturate(1);
+  }
+
+  0%,
+  100% {
+    filter: saturate(10);
+  }
+}
+
+.brightness {
+  animation: brightness 5s infinite;
+}
+
+@keyframes brightness {
+  25%, 75% {
+    filter: brightness(1);
+  }
+
+  0%,
+  100% {
+    filter: brightness(10);
+  }
+}
+
+.omgwtfbbq {
+  animation: omgwtfbbq 5s infinite;
+}
+
+@keyframes omgwtfbbq {
+  25%, 75% {
+    filter: blur(0) brightness(1) hue-rotate(0deg) saturate(1);
+  }
+
+  0%,
+  100% {
+    filter: blur(10px) brightness(10) hue-rotate(180deg) saturate(10);
+  }
+}
