@@ -86,15 +86,16 @@ export function FloatingObjects() {
   return (
     <div className="fixed inset-0 pointer-events-none">
       {objects.map((obj) => (
-        <div
-          key={obj.id}
-          className="absolute text-6xl hue"
-          style={{
-            transform: `scale(1.25) translate(${obj.position.x}px, ${obj.position.y}px)`,
-            transition: 'transform 0.05s linear',
-          }}
-        >
-          {obj.emoji}
+        <div key={obj.id} className="sink">
+          <div
+            className="absolute text-6xl hue"
+            style={{
+              transform: `translate(${obj.position.x}px, ${obj.position.y}px)`,
+              transition: 'transform 0.05s linear',
+            }}
+          >
+            {obj.emoji}
+          </div>
         </div>
       ))}
     </div>
