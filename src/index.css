@@ -29,7 +29,7 @@ body {
 
 /* Filter effects */
 .blur {
-  animation: blur 5s infinite;
+  animation: blur 6s infinite;
 }
 
 @keyframes blur {
@@ -46,7 +46,7 @@ body {
 }
 
 .hue {
-  animation: hue 5s infinite;
+  animation: hue 6s infinite;
 }
 
 @keyframes hue {
@@ -63,7 +63,7 @@ body {
 }
 
 .saturate {
-  animation: saturate 5s infinite;
+  animation: saturate 6s infinite;
 }
 
 @keyframes saturate {
@@ -80,7 +80,7 @@ body {
 }
 
 .brightness {
-  animation: brightness 5s infinite;
+  animation: brightness 6s infinite;
 }
 
 @keyframes brightness {
@@ -97,7 +97,7 @@ body {
 }
 
 .omgwtfbbq {
-  animation: omgwtfbbq 5s infinite;
+  animation: omgwtfbbq 6s infinite;
 }
 
 @keyframes omgwtfbbq {
