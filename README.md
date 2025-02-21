@@ -23,6 +23,10 @@ The decorations are party related emojis that just float around to add a little 
 
 https://github.com/user-attachments/assets/400caad8-76b4-4104-b0bf-c23e9c4f2e5f
 
+## Resources
+
+- <https://swiperjs.com/react>
+
 ## Credits
 
 Various [Unsplash](https://unsplash.com/photos/a-group-of-people-standing-around-in-a-room-9vDdkxSCAD4) photographers for the photos used in the `photos` folder.
