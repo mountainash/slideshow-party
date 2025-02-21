@@ -31,14 +31,15 @@ export const PhotoSlideshow: React.FC<{ photos: string[] }> = ({ photos }) => {
       onSlideChange={() => {
         setCurrentEffect(getRandomEffect());
       }}
-      className="w-full h-full"
+      className="w-full h-full flex items-center justify-center bg-black"
     >
       {photos.map((photo, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} className="flex items-center justify-center">
           <img
             src={photo}
             alt="Slidehowphoto"
-            className={`w-full h-full object-cover transition-transform duration-300 ${currentEffect}`}
+            // loading="lazy"
+            className={`block max-h-full max-w-full object-contain m-auto ${currentEffect}`}
           />
         </SwiperSlide>
       ))}
